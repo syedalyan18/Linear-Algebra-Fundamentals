@@ -1,19 +1,11 @@
-import numpy as np
-import matplotlib.pyplot as plt
+def bayes_theorem(prior,sensitivity,specificity):
+    evidence=(sensitivity*prior)+(1-specificity)*(1-prior)
+    posterior=(sensitivity*prior) / evidence
+    return posterior
 
-from scipy.stats import binom
+prior=0.01
+specificity=0.90
+sensitivity=0.95
 
-# n,p=10,0.5
-# x=np.arange(0,n+1)
-# y=binom.pmf(x,n,p)
-# plt.bar(x,y, color="green")
-# plt.title("Binomial Distribution")
-# plt.show()
-
-from scipy.stats import poisson
-lam=3
-x=np.arange(0,10)
-y=poisson.pmf(x,lam)
-plt.bar(x,y,color="pink")
-plt.title("Poisson Distribution")
-plt.show()
+posterior=bayes_theorem(prior,sensitivity,specificity)
+print("Probability of Disease given Positive Test : ",posterior)
